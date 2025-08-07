@@ -18,8 +18,8 @@ A fork of batocera for tha batlexp G350.
 
 ## 🔧 Changes in Chronix
 
-Updated files to reflect Chronix branding:
+Updated files
 
 - `etc/os-release` — renamed to “Chronix Retro OS”  
-- Splash assets — added in `usr/share/batocera/splash/`  
+- Splash assets — added in `usr/share/batocera/splash/`
 
