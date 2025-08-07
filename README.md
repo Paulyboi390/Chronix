@@ -7,13 +7,12 @@
 ---
 
 ## 🧭 What is Chronix?
-A fork of batocera for tha batlexp G350
+A fork of batocera for tha batlexp G350.
 ---
 
 ## 👏 Credits
 
-- Built off **Batocera Linux**, thanks to its open‑source community and permissive ethos. [oai_citation:2‡Batocera Wiki](https://wiki.batocera.org/license?utm_source=chatgpt.com)  
-- Batocera’s commercial restrictions (e.g. pre-installed emulators) still apply. [oai_citation:3‡Batocera Wiki](https://wiki.batocera.org/license?utm_source=chatgpt.com)
+- Built off **Batocera Linux**. 
 
 ---
 
