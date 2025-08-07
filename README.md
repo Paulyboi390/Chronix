@@ -12,7 +12,7 @@ A fork of batocera for tha batlexp G350.
 
 ## 👏 Credits
 
-- Built off **Batocera Linux**. 
+- Built off Batocera Linux. You can find them here https://batocera.org/.
 
 ---
 
