@@ -3,7 +3,7 @@ A custom fork of Batocera Linux for the BATLEXP G350 handheld.
 Maintains full Batocera compatibility while adding visual changes, utilities, and quality-of-life improvements.
 
 What’s New in v1.0.0
-RetroArch in Ports – Custom launcher located in the Ports menu. (Default RetroArch option in EmulationStation is disabled.)
+RetroArch in Ports – Custom launcher located in the Ports menu.
 
 Custom Theme & Boot Logo – Unique visuals for Chronix.
 
