@@ -1,24 +1,22 @@
-# Chronix Retro OS - v1.0.0  
-**Chronix — Retro Reloaded**  
+Chronix Retro OS – v1.0.0
+A custom fork of Batocera Linux for the BATLEXP G350 handheld.
+Maintains full Batocera compatibility while adding visual changes, utilities, and quality-of-life improvements.
 
-**Chronix** is a lightweight rebrand of Batocera Linux, optimized for the BATLEXP G350 handheld. Just like Batocera, it’s open-source and ready to game—now with your personal flair.
+What’s New in v1.0.0
+RetroArch in Ports – Custom launcher located in the Ports menu. (Default RetroArch option in EmulationStation is disabled.)
 
----
+Custom Theme & Boot Logo – Unique visuals for Chronix.
 
-##  What Is Chronix?  
-A fork of Batocera tailored specifically for the BATLEXP G350. It maintains compatibility with Batocera's ecosystem—including themes, ports, and emulators—but offers new aesthetics and usability improvements. Built on top of the stable, open-source foundation that Batocera provides.
+Chronix OS Branding – Updated etc/os-release.
 
----
+Splash Screen Update – New graphics in usr/share/batocera/splash/.
 
-##  Highlights in v1.0.0  
-- **RetroArch Launcher (in *Ports*)**  
-   A custom RetroArch launcher inside the Ports section. The default RetroArch option in EmulationStation is disabled—use the Ports option for now.
+Terminal Access in Ports – Launch the terminal directly from Ports.
 
-- **Custom Theme & Boot Logo**  
-   Branded visuals that set Chronix apart from vanilla Batocera.
+ROM Name Cleaner – Removes clutter like ( ), [ ], and ! from ROM names.
 
-- **"Chronix Retro OS" Branding**  
-   The OS name in `etc/os-release` is updated to make it official.
+Updated EmulationStation Configs – Tweaked defaults for better usability.
 
-- **Splash Screen Assets**  
-   New graphics under `usr/share/batocera/splash/` for that polished boot experience.
+Based On
+Batocera Linux
+
