@@ -6,7 +6,7 @@
 ---
 
 ##  What Is Chronix?  
-A fork of Batocera tailored specifically for the BATLEXP G350. It maintains compatibility with Batocera's ecosystem—including themes, ports, and emulators—but offers new aesthetics and usability improvements. Built on top of the stable, open-source foundation that Batocera provides :contentReference[oaicite:0]{index=0}.
+A fork of Batocera tailored specifically for the BATLEXP G350. It maintains compatibility with Batocera's ecosystem—including themes, ports, and emulators—but offers new aesthetics and usability improvements. Built on top of the stable, open-source foundation that Batocera provides.
 
 ---
 
