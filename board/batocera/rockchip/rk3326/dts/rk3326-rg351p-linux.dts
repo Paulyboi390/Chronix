@@ -2,7 +2,7 @@
 /*
  * Copyright (c) 2020 Anbernic
  *
- * Anbernic RG351P isn't ODROID-GO2 CLONE:)
+ * The Batlexp G350 is a handheld using an rk3326
  *
  */
 
@@ -16,8 +16,8 @@
 #include "rockchip/rk3326-linux.dtsi"
 
 / {
-	model = "Anbernic RG351P";
-	compatible = "rockchip,rk3326-rg351p-linux", "rockchip,rk3326";
+	model = "Batlexp G350";
+	compatible = "rockchip,rk3326-batlexp-linux", "rockchip,rk3326";
 
 	chosen {
                 bootargs = "";
@@ -684,7 +684,7 @@
 	pmuio2-supply = <&vcc3v3_pmu>;
 };
 
-/* RG351P Motor PWM */
+/* Batlexp Motor PWM */
 &pwm0 {
 	status = "okay";
 };
