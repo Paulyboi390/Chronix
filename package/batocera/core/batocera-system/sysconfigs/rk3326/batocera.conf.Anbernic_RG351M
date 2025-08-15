@@ -1,7 +1,7 @@
 # Anbernic RG351M advance default values
 
 # default resolution
-es.resolution=480x320
+es.resolution=640x480
 
 # default rotation
 display.rotate=3
