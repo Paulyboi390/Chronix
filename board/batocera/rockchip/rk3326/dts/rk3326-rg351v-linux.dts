@@ -98,8 +98,8 @@
 		simple-audio-card,routing =
 			"MIC_IN", "Mic Jack",
 			/*"IN1P", "Mic Jack",*/
-			"Headphone Jack", "HPOL",
-			"Headphone Jack", "HPOR";
+			"Headphone Jack", "HPOR",
+			"Headphone Jack", "HPOL";
 		simple-audio-card,hp-det-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
 		simple-audio-card,codec-hp-det = <1>;
 		simple-audio-card,cpu {
