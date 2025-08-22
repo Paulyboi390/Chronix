@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StoryHaven</title>
+<style>
+  body { margin: 0; font-family: Georgia, serif; background-color: #f2e6d9; overflow: hidden; }
+  header { background-color: #8b5e3c; color: white; padding: 10px; text-align: center; }
+  main { padding: 20px; position: relative; }
+  .bookshelf { display: flex; flex-direction: column; gap: 20px; }
+  .shelf { display: flex; background: #b07d50; border: 10px solid #8b5e3c; border-radius: 8px; padding: 10px; box-shadow: inset 0 -15px 10px rgba(0,0,0,0.2); height: 150px; overflow: hidden; }
+  .book { width: 50px; height: 120px; margin: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; text-align: center; border-radius: 2px; cursor: pointer; writing-mode: vertical-rl; text-orientation: mixed; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+  .top-buttons { position: absolute; top: 0; left: 0; display: flex; gap: 5px; }
+  .top-buttons button { padding: 5px 10px; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; background-color: #8b5e3c; color: white; }
+  #readerContainer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+  #reader { background: white; padding: 20px; max-width: 600px; max-height: 80%; overflow-y: auto; border-radius: 8px; position: relative; }
+  #closeReader { position: absolute; top: 10px; right: 10px; background: #8b5e3c; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+  #navButtons { display: flex; justify-content: space-between; margin-top: 10px; }
+  #bookContent { white-space: pre-wrap; line-height: 1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>StoryHaven</h1>
+  <div class="top-buttons">
+    <button id="readBook">📖</button>
+    <button id="addBook">➕</button>
+    <button id="editBook">✏️</button>
+    <button id="deleteBook">🗑️</button>
+  </div>
+</header>
+<main>
+  <div class="bookshelf" id="bookshelf"></div>
+</main>
+<div id="readerContainer">
+  <div id="reader">
+    <button id="closeReader">X</button>
+    <h2 id="bookTitle"></h2>
+    <div id="bookContent"></div>
+    <div id="navButtons">
+      <button onclick="prevPage()">⬅️</button>
+      <button onclick="nextPage()">➡️</button>
+    </div>
+  </div>
+</div>
+<script>
+const colors = ["#d9a066", "#8b5e3c", "#6b8e23", "#4682b4", "#b22222"];
+let books = [
+  { title: "Alice's Adventures in Wonderland", pages: [`CHAPTER I. Down the Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her sister on the bank...`,`Alice was considering in her own mind...`,`But when the Rabbit actually took a watch...`,`THE END`] },
+  { title: "The Adventures of Tom Sawyer", pages: [`CHAPTER I. Tom Plays, Fights, and Hides\n\nTom Sawyer is a young boy growing up along the Mississippi River...`,`Tom encounters his friends, and together they explore caves...`,`THE END`] },
+  { title: "Pride and Prejudice", pages: [`CHAPTER I. The Bennet Family\n\nMrs. Bennet is determined to see all her daughters married...`,`Elizabeth Bennet meets Mr. Darcy and finds him proud...`,`THE END`] },
+  { title: "Moby Dick", pages: [`CHAPTER I. Loomings\n\nCall me Ishmael. I have little to say about my past...`,`Ahab reveals his obsession: he seeks revenge against the white whale...`,`THE END`] },
+  { title: "Great Expectations", pages: [`CHAPTER I. The Beginning\n\nPip, an orphan, lives with his sister...`,`Pip meets the wealthy Miss Havisham and her adopted daughter Estella...`,`THE END`] }
+];
+
+const bookshelf = document.getElementById('bookshelf');
+const readerContainer = document.getElementById('readerContainer');
+const bookContent = document.getElementById('bookContent');
+const bookTitle = document.getElementById('bookTitle');
+const closeReader = document.getElementById('closeReader');
+let currentPage = 0;
+let currentBook = null;
+let currentBookIndex = null;
+
+function saveBooks() { localStorage.setItem('StoryHavenBooks', JSON.stringify(books)); }
+
+function renderShelf() {
+  bookshelf.innerHTML = '';
+  for (let s = 0; s < 3; s++) {
+    const shelf = document.createElement('div');
+    shelf.className = 'shelf';
+    if(s === 0){
+      books.forEach((book, idx) => {
+        const div = document.createElement('div');
+        div.className = 'book';
+        div.style.background = colors[idx % colors.length];
+        div.textContent = book.title;
+        div.onclick = () => { currentBookIndex = idx; highlightSelected(div); };
+        shelf.appendChild(div);
+      });
+    }
+    bookshelf.appendChild(shelf);
+  }
+  saveBooks();
+}
+
+let selectedDiv = null;
+function highlightSelected(div) {
+  if(selectedDiv) selectedDiv.style.outline = '';
+  selectedDiv = div;
+  div.style.outline = '3px solid yellow';
+}
+
+function openBook(book, index) {
+  currentBook = book;
+  currentBookIndex = index;
+  currentPage = 0;
+  bookTitle.textContent = book.title;
+  bookContent.textContent = book.pages[currentPage];
+  readerContainer.style.display = 'flex';
+}
+
+function nextPage() { if(currentBook && currentPage < currentBook.pages.length-1){currentPage++;bookContent.textContent=currentBook.pages[currentPage];} }
+function prevPage() { if(currentBook && currentPage>0){currentPage--;bookContent.textContent=currentBook.pages[currentPage];} }
+closeReader.onclick = () => { readerContainer.style.display = 'none'; };
+
+document.getElementById('readBook').onclick = () => {
+  if(currentBookIndex === null) return alert('Select a book first!');
+  openBook(books[currentBookIndex], currentBookIndex);
+};
+
+document.getElementById('addBook').onclick = () => {
+  const title = prompt('Enter book title:');
+  if (!title) return;
+  const content = prompt('Enter book content (use "|" to separate pages):');
+  const pages = content.split('|').map(p => p.trim());
+  books.push({title, pages});
+  renderShelf();
+};
+document.getElementById('editBook').onclick = () => {
+  if(currentBookIndex===null) return alert('Select a book first!');
+  const newTitle = prompt('Edit book title:',books[currentBookIndex].title);
+  if(!newTitle)return;
+  const newContent = prompt('Edit book content (use "|" to separate pages):',books[currentBookIndex].pages.join('|'));
+  const newPages = newContent.split('|').map(p=>p.trim());
+  books[currentBookIndex]={title:newTitle,pages:newPages};
+  renderShelf();
+};
+document.getElementById('deleteBook').onclick = () => {
+  if(currentBookIndex===null) return alert('Select a book first!');
+  if(confirm('Are you sure you want to delete this book?')){
+    books.splice(currentBookIndex,1);
+    currentBook=null;
+    currentBookIndex=null;
+    renderShelf();
+  }
+};
+document.addEventListener('keydown',function(event){
+  if(readerContainer.style.display==='flex'){
+    if(event.key==='ArrowRight')nextPage();
+    else if(event.key==='ArrowLeft')prevPage();
+  }
+});
+
+renderShelf();
+</script>
+</body>
+</html>
+
+
+
